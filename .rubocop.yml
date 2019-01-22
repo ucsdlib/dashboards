@@ -1,0 +1,33 @@
+equire: rubocop-rspec
+
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'app/assets/**/*'
+    - 'config/**/*'
+    - 'doc/**/*'
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'Gemfile'
+    - 'config.ru'
+    - 'Rakefile'
+    - 'Capfile'
+
+Rails:
+  Enabled: true
+
+Style/Documentation:
+  Exclude:
+    - 'app/mailers/application_mailer.rb'
+    - 'app/helpers/application_helper.rb'
+    - 'app/models/application_record.rb'
+    - 'app/controllers/application_controller.rb'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/AbcSize:
+  Max: 18
