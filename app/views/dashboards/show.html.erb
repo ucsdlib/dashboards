@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rdd attribute:</strong>
+  <%= @dashboard.rdd_attribute %>
+</p>
+
+<p>
+  <strong>Rdd value:</strong>
+  <%= @dashboard.rdd_value %>
+</p>
+
+<%= link_to 'Edit', edit_dashboard_path(@dashboard) %> |
+<%= link_to 'Back', dashboards_path %>
