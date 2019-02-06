@@ -2,28 +2,52 @@
 
 <h1>Dashboards</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Rdd attribute</th>
-      <th>Rdd value</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dashboards.each do |dashboard| %>
-      <tr>
-        <td><%= dashboard.rdd_attribute %></td>
-        <td><%= dashboard.rdd_value %></td>
-        <td><%= link_to 'Show', dashboard %></td>
-        <td><%= link_to 'Edit', edit_dashboard_path(dashboard) %></td>
-        <td><%= link_to 'Destroy', dashboard, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<button type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+  Get Live data
+</button>
+<div style="background-color:lightgreen; padding-top: 10px;padding-left: 20px;padding-bottom: 10px">
+<h3> DAMS Statistic Data</h3>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body" data-toggle="tooltip" data-placement="top" title="we can add supporting in tooltip.">
+        <h5 class="card-title">RDCP objects</h5>
+        <p class="card-text">supporting text add here.</p>
+        <p class="card-text"><%= @rdcp_complex %></p>
+        <a href="#" class="btn btn-primary">Go RDCP Site</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">DAMS Objects</h5>
+        <p class="card-text">supporting text add here.</p>
+        <h4 class="card-text"><%= @dlp_complex %></h4>
+        <a href="#" class="btn btn-primary">Go DAMS Site</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 <br>
+
+<div style="background-color:lightblue; padding-top: 10px;padding-left: 20px;padding-bottom: 10px">
+<h3> Chronopolis Statistic Data</h3>
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Chronoplis Objects</h5>
+        <p class="card-text">supporting text add here.</p>
+        <h4 class="card-text"><%= @chron_data %></h4>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 <%= link_to 'New Dashboard', new_dashboard_path %>

@@ -6,7 +6,7 @@
 env :PATH, ENV['PATH']
 env :GEM_PATH, ENV['GEM_PATH']
 set :output, "/Users/huawei/git/dashboards/tmp/cron_log.log"
-#set :environment, 'development' 
+set :environment, 'development' 
 
 every 1.minutes do
   rake "dashboard:dlp"
