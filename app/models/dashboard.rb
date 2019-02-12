@@ -13,6 +13,50 @@ class Dashboard < ApplicationRecord
     client = Geckoboard.client('ea9a77c8244c7f347b3ee8adef188d54')
   end
 
+  def self.chron
+    uri = URI.parse("https://chron.ucsd.edu/ace-am/Status?count=20000&json=true")
+
+    http = Net::HTTP.new(uri.host, uri.port)
+    request = Net::HTTP::Get.new(uri.request_uri)
+    request.basic_auth("dashboard", "DontUseABang")
+    request.content_type = "application/json"
+    http.use_ssl = true
+    response = http.request(request).body
+    chron_json = JSON.parse(response)
+    chron_collections = chron_json["collections"]
+    chron_files = 0
+    chron_files_size = 0
+    chron_active_files = 0
+    chron_corrupt_files = 0
+    lastSync_date =[]
+    lastSync_date2 =[]
+
+    chron_collections.each do |v|
+        if v["totalFiles"]
+           chron_files += v["totalFiles"].to_i
+        end
+        if v["totalSize"]
+           chron_files_size += v["totalSize"].to_i
+        end
+        if v["activeFiles"]
+           chron_active_files += v["activeFiles"].to_i
+        end
+        if v["corruptFiles"]
+           chron_corrupt_files += v["corruptFiles"].to_i
+        end
+        if v["lastSync"]
+           lastSync_date << DateTime.parse(v["lastSync"]).to_date
+           lastSync_date2 << DateTime.parse(v["lastSync"])
+        end
+    end
+
+    Dashboard.create(rdd_attribute: "chron_collections", rdd_value: chron_collections.count)
+    Dashboard.create(rdd_attribute: "chron_files", rdd_value: chron_files)
+    Dashboard.create(rdd_attribute: "chron_files_size", rdd_value: chron_files_size)
+    Dashboard.create(rdd_attribute: "chron_active_files", rdd_value: chron_files_size)
+    Dashboard.create(rdd_attribute: "chron_corrupt_files", rdd_value: chron_files_size)
+  end
+
   def self.dlp
     dlp_complex_objects = 0
     complex_total_files = 0
