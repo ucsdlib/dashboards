@@ -3,8 +3,11 @@ class DashboardsController < ApplicationController
 
   
   def index
-    
-   @dlp_complex = Dashboard.where('rdd_attribute = "dlp_complex_objects"').order('created_at DESC').last.rdd_value
+    # @test1 = Dashboard.dlp    
+   # @dlp_complex = Dashboard.where('rdd_attribute = "dlp_complex_objects"').order('created_at DESC').last.rdd_value
+   
+   @test2 = Dashboard.chron
+   @chron_collections = Dashboard.where('rdd_attribute = "chron_collections"').order('created_at DESC').last.rdd_value
    #byebug
 
   end
