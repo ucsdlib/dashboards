@@ -10,15 +10,18 @@ class Dashboard < ApplicationRecord
   validates :rdd_value, presence: true
   
   def self.connect_geckoboard()
-    client = Geckoboard.client('ea9a77c8244c7f347b3ee8adef188d54')
+    geckoboard_api_key = Rails.application.credentials.geckoboard_api_key
+    client = Geckoboard.client(geckoboard_api_key)
   end
 
   def self.chron
+    auth_user = Rails.application.credentials.chron_auth_username
+    auth_password = Rails.application.credentials.chron_auth_password
     uri = URI.parse("https://chron.ucsd.edu/ace-am/Status?count=20000&json=true")
 
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Get.new(uri.request_uri)
-    request.basic_auth("dashboard", "DontUseABang")
+    request.basic_auth(auth_user, auth_password)
     request.content_type = "application/json"
     http.use_ssl = true
     response = http.request(request).body

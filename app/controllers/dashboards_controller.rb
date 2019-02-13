@@ -8,7 +8,11 @@ class DashboardsController < ApplicationController
    
    @test2 = Dashboard.chron
    @chron_collections = Dashboard.where('rdd_attribute = "chron_collections"').order('created_at DESC').last.rdd_value
+
+   #test = Dashboard.connect_geckoboard
    #byebug
+
+
 
   end
 
