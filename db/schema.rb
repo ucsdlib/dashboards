@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190109233315) do
+ActiveRecord::Schema.define(version: 2019_02_13_201627) do
 
   create_table "dashboards", force: :cascade do |t|
     t.string "rdd_attribute"
